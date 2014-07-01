@@ -27,14 +27,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 				
 		//listen for clicks on the play button
-		Button playBtn = (Button)findViewById(R.id.playButton);
+		Button playBtn = (Button)findViewById(R.id.button1);
 		playBtn.setOnClickListener(this);
 	}
 	
 	@Override
 	public void onClick(View view) {
 		//check if play button was clicked
-		if(view.getId()==R.id.playButton){
+		if(view.getId()==R.id.button1){
 			Intent playIntent = new Intent(this, GameActivity.class);
 			this.startActivity(playIntent);
 		}

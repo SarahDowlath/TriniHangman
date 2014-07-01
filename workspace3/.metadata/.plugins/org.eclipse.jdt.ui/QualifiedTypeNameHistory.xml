@@ -2,4 +2,9 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="android.R"/>
 <fullyQualifiedTypeName name="android.R.layout"/>
+<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="com.example.trinihangman.R.drawable"/>
+<fullyQualifiedTypeName name="android.widget.GridView"/>
+<fullyQualifiedTypeName name="com.example.trinihangman.R.id"/>
 </qualifiedTypeNameHistroy>
