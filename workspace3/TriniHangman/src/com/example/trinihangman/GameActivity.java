@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.os.Bundle;
+import android.widget.GridView;
 
 public class GameActivity extends Activity {
 	
@@ -22,7 +23,8 @@ public class GameActivity extends Activity {
 	
 	//adding adapter
 	private GridView letters;
-	private LetterAdapter letterAdapt;
+	private LetterAdapter ltrAdapt;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +47,10 @@ public class GameActivity extends Activity {
 	
 	private void playGame(){
 		//play a game
-		letterAdapt= new LetterAdapter(this);
 		
-		letters.setAdapter(letterAdapt);
+		
+		ltrAdapt=new LetterAdapter(this);
+		letters.setAdapter(ltrAdapt);
 		
 		String newWord = words[rand.nextInt(words.length)];
 		//make sure that we don't pick the same word twice since the playGame method is invoked when the user chooses to play again after winning or loosing a game. 
