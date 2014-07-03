@@ -4,5 +4,23 @@
     <string name="app_name">Trini-Hangman</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    
+    <string name="about_text"> 
+ 
+	Local Trinidad and Tobago version of Hangman which is a fun way to learn the culture of Trinidad and Tobago. 
+	
+	TriniHangman allows you to select from a list of category all related to culture. 
+	
+	You are presented with all the letters from the alphabet and can guess a letter for the secret word.
+	 
+	If you guess a letter that is part of the word, the word is redisplayed with all instances of that letter shown in the correct positions, along with any letters correctly guessed on previous turns. 
+	
+	For every letter guessed wrong, a bit more of the hangman is exposed.  
+	
+	You have 8 tries to correctly guess the word.     
+         
+        </string>
+        
+    <string name="about_title"> About Trini-Hangman </string>
 
 </resources>
