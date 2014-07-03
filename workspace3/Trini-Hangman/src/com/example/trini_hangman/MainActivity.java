@@ -91,56 +91,39 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	
 	
-	
-	
-	
-	
-	
-	/*
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+	//creating a category option
+	 
+	 private void openNewGameDialog(){
+		 
+		 new AlertDialog.Builder(this).setTitle("Select category").setItems(
+				 R.array.category, new DialogInterface.OnClickListener()
+				 	{
+					 
+					 public void onClick(DialogInterface dialoginterface, int i){
+						 	startGame(i);
+					 }
+					 }).show();
+		 
+	 }//end openNewGameDialog
+				 
 
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
-	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	 private void startGame(int i){
+		 
+		 Log.d(TAG,"clicked on" + i );
+		 Intent intent = new Intent(MainActivity.this, Game.class);
+		 intent.putExtra(Game.KEY_CATEGORY,i);
+		 startActivity(intent);
+	 }
 
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
-	/**
-	
-	public static class PlaceholderFragment extends Fragment {
 
-		public PlaceholderFragment() {
-		}
 
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
-	}*/
 
-}
+
+
+
+}//end MainActivity class
+
+
