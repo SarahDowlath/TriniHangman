@@ -71,13 +71,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			//startGame(Game.CATEGORY_CONTINUE);    
 			break;   
 		  
-		  //case R.id.newgameBtn:    
-		  // open a new game dialog box    
-			//to do:
-			  //OpenNewGameDialog();    
-		//	break;
+		   case R.id.newgameBtn:    
+		   //open a new game dialog box    
 			
-		  case R.id.aboutBtn:    
+			openNewGameDialog();    
+			break;
+			
+		   case R.id.aboutBtn:    
 		  // start about activity    
 			Intent i = new Intent(MainActivity.this, About.class);    
 			startActivity(i);    

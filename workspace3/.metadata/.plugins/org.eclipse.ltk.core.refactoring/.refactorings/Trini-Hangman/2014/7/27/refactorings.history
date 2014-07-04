@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;Trini-Hangman&apos;&#x0D;&#x0A;- Original project: &apos;Trini-Hangman&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     buttonletterstyle.xml&#x0D;&#x0A;     buttonLetterStyle1.xml&#x0D;&#x0A;     buttonNextOneStyle.xml" description="Delete elements" element1="res/layout/buttonLetterStyle1.xml" element2="res/layout/buttonletterstyle.xml" element3="res/layout/buttonNextOneStyle.xml" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1404401595390" subPackages="false" version="1.0"/>
+</session>

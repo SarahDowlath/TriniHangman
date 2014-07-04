@@ -57,7 +57,7 @@
     <string name="button_letter_x">X</string>
     <string name="button_letter_y">Y</string>
     <string name="button_letter_z">Z</string>
-    <string name="button_go_home">go home</string>
-    <string name="button_next">next one</string>
+    <string name="button_go_home">Home</string>
+    <string name="button_next">Next</string>
 
 </resources>
