@@ -9,10 +9,13 @@
 	<string name="body">The Body</string>
 	<string name="arm">An Arm</string>
 	<string name="leg">A Leg</string>
+	<string name="button_food_category">Food</string>
+    <string name="button_music_category">Music</string>
+    <string name="button_sports_category">Sports</string>
    
     <string name="about_text"> 
  
-	Local Trinidad and Tobago version of Hangman which is a fun way to learn the culture of Trinidad and Tobago. 
+	Test5 Local Trinidad and Tobago version of Hangman which is a fun way to learn the culture of Trinidad and Tobago. 
 	
 	TriniHangman allows you to select from a list of category all related to culture. 
 	

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <resources>  
     <string-array name="category">   
-        <item>Plant</item>   
-        <item>Animal</item>   
-        <item>Insect</item>  
+        <item>food</item>   
+        <item>music</item>   
+        <item>sports</item>  
     </string-array> 
     
     <string-array name="food">
@@ -25,10 +25,19 @@
     <item>CHUTNEY</item>
     <item>RAPSO</item>
     <item>TASSA</item>
-    <item>CLASSICAL</item>
+    <item>STEEL PAN</item>
     <item>GOSPEL</item>
     <item>KAISO</item>
     <item>REGGAE</item>
+  </string-array>
+  
+  
+  <string-array name="sports">
+    <item>CRICKET</item>
+    <item>LARA</item>
+    <item>HASLEY CRAWFORD</item>
+    <item>SOCA WARRIORS</item>
+    <item>BOVEL</item>
   </string-array>
     
    

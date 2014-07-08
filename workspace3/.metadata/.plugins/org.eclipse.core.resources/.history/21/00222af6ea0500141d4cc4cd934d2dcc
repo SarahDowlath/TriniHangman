@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<resources>  
+    <string-array name="category">   
+        <item>food</item>   
+        <item>music</item>   
+        <item>sports</item>  
+    </string-array> 
+    
+    <string-array name="food">
+    <item>PELAU</item>
+    <item>OIL DOWN</item>
+    <item>CURRY</item>
+    <item>CRAB AND DUMPLIN</item>
+    <item>ROTI</item>
+    <item>CORN SOUP</item>
+    <item>BAKE AND SHARK</item>
+    <item>DOUBLES</item>
+    <item>SOUSE</item>
+    <item>CURRY DUCK</item>
+  </string-array>
+
+  <string-array name="music">
+    <item>SOCA</item>
+    <item>CALYPSO</item>
+    <item>CHUTNEY</item>
+    <item>RAPSO</item>
+    <item>TASSA</item>
+    <item>CLASSICAL</item>
+    <item>GOSPEL</item>
+    <item>KAISO</item>
+    <item>REGGAE</item>
+  </string-array>
+    
+   
+    
+</resources>

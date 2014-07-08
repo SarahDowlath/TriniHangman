@@ -12,10 +12,10 @@
 	<section name="org.eclipse.ui.internal.views.log.EventDetailsDialog">
 		<item value="246" key="sashWidth3"/>
 		<item value="1024" key="height"/>
-		<item value="1920" key="width"/>
-		<item value="246" key="sashWidth1"/>
+		<item value="1823" key="width"/>
 		<item value="0" key="y"/>
-		<item value="507" key="sashWidth2"/>
+		<item value="246" key="sashWidth1"/>
 		<item value="0" key="x"/>
+		<item value="507" key="sashWidth2"/>
 	</section>
 </section>

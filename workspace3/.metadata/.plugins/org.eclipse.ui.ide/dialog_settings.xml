@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\sarah_000\Documents\GitHub\Hangman-1\hangman-1"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
 	<section name="SaveAsDialogSettings">
 		<item value="875" key="DIALOG_WIDTH"/>
 		<item value="172" key="DIALOG_Y_ORIGIN"/>
@@ -7,12 +18,14 @@
 		<item value="708" key="DIALOG_HEIGHT"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
+	<section name="NewWizardAction">
+	</section>
 	<section name="CleanDialogSettings">
 		<item value="828" key="DIALOG_WIDTH"/>
 		<item value="true" key="BUILD_NOW"/>
 		<item value="259" key="DIALOG_Y_ORIGIN"/>
 		<item value="true" key="BUILD_ALL"/>
-		<item value="1092" key="DIALOG_X_ORIGIN"/>
+		<item value="995" key="DIALOG_X_ORIGIN"/>
 		<item value="561" key="DIALOG_HEIGHT"/>
 		<item value="false" key="TOGGLE_SELECTED"/>
 	</section>
