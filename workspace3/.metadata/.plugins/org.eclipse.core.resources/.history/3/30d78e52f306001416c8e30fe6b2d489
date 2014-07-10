@@ -66,16 +66,9 @@ public class MainActivity extends Activity implements OnClickListener {
 
 
 	private void startGame(int i){
-		
-		if (MainActivity.CATEGORY_CONTINUE == i)
-		{
+		if (MainActivity.CATEGORY_CONTINUE == i){
 			//Continue Game
-		
-			//do I pass an intent with the CATEGORY_CONTINUE value to the Game Activity class? 
-			
-		}
-		else
-		{
+		}else{
 			Intent intent = new Intent(this, GameActivity.class);
 			intent.putExtra(GAME_CATEGORY, i);
 			startActivity(intent);

@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
 	
 
 public class GameActivity extends Activity{
@@ -79,7 +78,7 @@ public class GameActivity extends Activity{
 		bodyParts[4] = (ImageView)findViewById(R.id.leg1);
 		bodyParts[5] = (ImageView)findViewById(R.id.leg2);
 		
-		initGame(secretWord);
+		playGame(secretWord);
 	}
 		
 	private void bindViews()
@@ -96,10 +95,6 @@ public class GameActivity extends Activity{
 	public void clickLetter(View view) {
 		String letter = this.getLetter(view.getId());
 		Toast.makeText(getApplicationContext(), letter, Toast.LENGTH_SHORT).show();
-		//Analyze the letter and either display or hangman 
-		//read the user input 
-		//if letters are part of the string, display it in textView
-		
 	}
 	
 	//Returns the string for the button selected
@@ -188,9 +183,14 @@ public class GameActivity extends Activity{
 		return letter;
 	}
 
-
+	public void goHome(View view){
 		
-	private void initGame(String word)
+	}
+	
+	public void nextOne(View view){
+		
+	}
+	private void playGame(String word)
 	{
 		currPart = 0;
 		numChars = currWord.length();
@@ -199,7 +199,6 @@ public class GameActivity extends Activity{
 			bodyParts[p].setVisibility(View.INVISIBLE);
 		initSecretWord(word);
 		initWrongGuesses();
-		
 	}
 		
 	private void initSecretWord(String word){
@@ -230,21 +229,8 @@ public class GameActivity extends Activity{
 	}
 	
 	
-	 private String underscore(String phraseWord) 
+	 private String underscore(String word) 
 	 {   
-		 //break up the word/phrase 
-		 
-		 String result;
-		 
-		 String [] words= phraseWord.split("");
-		 
-		 for(String word:words){
-			 
-			 //get each word
-			 //append underscore 
-			 //add spaces 
-		 }
-		 
 		 StringBuffer result = new StringBuffer();   
 		 for (int i = 0; i < word.length(); i++) 
 			 result.append("_ "); 
@@ -279,31 +265,4 @@ public class GameActivity extends Activity{
 		 }
 		 return newWord;
 	 }
-	 
-	 
-	 
-	public void goHome(View view) {   
-	       Intent intentHome = new Intent(this, MainActivity.class);
-	       startActivity(intentHome);
-	}
-	
-	/*public void nextOne(View view) {   
-	       Intent intent = new Intent(this, GameActivity.class);
-	       //intent.putExtra("level", curlevel);
-	       startActivity(intent);
-	}*/
-
-	@Override
-	public void onBackPressed() {
-		Intent intentBack = new Intent(Intent.ACTION_MAIN);
-		intentBack.addCategory(Intent.CATEGORY_HOME);
-		intentBack.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(intentBack);
-	}
-	 
-	 
-	 
-	 
-	 
-	 
 }//end class 	

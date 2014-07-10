@@ -15,7 +15,7 @@
    
     <string name="about_text"> 
  
-	Test7 Local Trinidad and Tobago version of Hangman which is a fun way to learn the culture of Trinidad and Tobago. 
+	Test6 Local Trinidad and Tobago version of Hangman which is a fun way to learn the culture of Trinidad and Tobago. 
 	
 	TriniHangman allows you to select from a list of category all related to culture. 
 	
@@ -29,7 +29,6 @@
          
         </string>
         
-    
     <string name="about_title"> About Trini-Hangman </string>
     
     

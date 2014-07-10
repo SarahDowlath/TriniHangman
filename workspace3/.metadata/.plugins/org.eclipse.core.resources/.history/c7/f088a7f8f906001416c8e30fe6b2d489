@@ -96,10 +96,6 @@ public class GameActivity extends Activity{
 	public void clickLetter(View view) {
 		String letter = this.getLetter(view.getId());
 		Toast.makeText(getApplicationContext(), letter, Toast.LENGTH_SHORT).show();
-		//Analyze the letter and either display or hangman 
-		//read the user input 
-		//if letters are part of the string, display it in textView
-		
 	}
 	
 	//Returns the string for the button selected
@@ -230,21 +226,8 @@ public class GameActivity extends Activity{
 	}
 	
 	
-	 private String underscore(String phraseWord) 
+	 private String underscore(String word) 
 	 {   
-		 //break up the word/phrase 
-		 
-		 String result;
-		 
-		 String [] words= phraseWord.split("");
-		 
-		 for(String word:words){
-			 
-			 //get each word
-			 //append underscore 
-			 //add spaces 
-		 }
-		 
 		 StringBuffer result = new StringBuffer();   
 		 for (int i = 0; i < word.length(); i++) 
 			 result.append("_ "); 
