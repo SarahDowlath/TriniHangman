@@ -1,0 +1,9 @@
+Notes on Android stuff learnt 
+
+1. Passing and receiving intents 
+
+2. Forking a repository 
+
+3. Understanding of finish() method for back button and the system.exit.(1) for exit game 
+
+4. 

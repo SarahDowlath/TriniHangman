@@ -45,7 +45,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				startActivity(j);    
 				break;  
 			case R.id.exitgameBtn:  // exit game    
-				finish();    
+				moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
 				break;   
 		}  
 	}

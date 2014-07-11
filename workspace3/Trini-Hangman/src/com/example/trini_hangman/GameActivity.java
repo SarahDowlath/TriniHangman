@@ -11,6 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
+import java.util.Arrays;
+//import org.apache.commons.lang.StringUtils;
+
 	
 
 public class GameActivity extends Activity{
@@ -177,7 +180,7 @@ public class GameActivity extends Activity{
 				break;
 			case R.id.buttonX:
 				letter = "X";
-				break;
+ 				break;
 			case R.id.buttonY:
 				letter = "Y";
 				break;
@@ -203,13 +206,23 @@ public class GameActivity extends Activity{
 	}
 		
 	private void initSecretWord(String word){
-		String underScore = underscore(word);
-		Log.w(MainActivity.TAG, underScore);
+		
+		//1. splitPhrase (word)
+		//2. 
+		
+		
+		//String underScore = underscore(word);
+		//Log.w(MainActivity.TAG, underScore);
+		
+		
+		String ans;
+		
+		ans = splitPhrase(word);
 		
 		if (secWord == null)
 			secWord = (TextView)findViewById(R.id.secretTextView);
 		
-		secWord.setText(underScore);
+		secWord.setText(ans);
 	}
 		
 		
@@ -230,28 +243,51 @@ public class GameActivity extends Activity{
 	}
 	
 	
-	 private String underscore(String phraseWord) 
+	 private String underscore(String temp) 
 	 {   
 		 //break up the word/phrase 
 		 
-		 String result;
 		 
-		 String [] words= phraseWord.split("");
-		 
-		 for(String word:words){
-			 
-			 //get each word
-			 //append underscore 
-			 //add spaces 
-		 }
-		 
-		 StringBuffer result = new StringBuffer();   
-		 for (int i = 0; i < word.length(); i++) 
-			 result.append("_ "); 
-		 return result.toString(); 
+		 StringBuffer buff = new StringBuffer();   
+		 for (int i = 0; i < temp.length(); i++) 
+			 buff.append("_ "); 
+		 return buff.toString(); 
 	}
 	
 	
+	 private String splitPhrase(String rawWord){
+		 
+		 String [] split = rawWord.split(" ");
+		 
+		 
+		 String [] tempWord = new String [20];
+		 
+		 String result=" ";
+		 int count = split.length;
+		 
+		 for(int i=0;i<split.length;i++){
+			 
+			
+				
+			tempWord[i] = underscore(split[i]); 
+		
+			
+			
+		 }
+		 	for( int j=0;j<=count-1;j++){
+		 		
+		 		result= tempWord[j] + 
+		 				" ";
+		 	}
+		 	
+		 
+		 //how to add spaces? after every i: split[i] + " "
+		 //build String split[i]+ " "
+		 
+		 return result;
+	 }
+	 
+	 
 	
 	 private String generateWordByCategory(int cat){
 		 String temp = "";
@@ -287,6 +323,7 @@ public class GameActivity extends Activity{
 	       startActivity(intentHome);
 	}
 	
+	//for a different level 
 	/*public void nextOne(View view) {   
 	       Intent intent = new Intent(this, GameActivity.class);
 	       //intent.putExtra("level", curlevel);
@@ -295,10 +332,9 @@ public class GameActivity extends Activity{
 
 	@Override
 	public void onBackPressed() {
-		Intent intentBack = new Intent(Intent.ACTION_MAIN);
-		intentBack.addCategory(Intent.CATEGORY_HOME);
-		intentBack.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(intentBack);
+		
+		finish();
+		
 	}
 	 
 	 
