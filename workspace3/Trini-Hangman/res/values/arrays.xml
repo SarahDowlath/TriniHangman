@@ -8,15 +8,11 @@
     
     <string-array name="food">
     <item>PELAU</item>
-    <item>OIL DOWN</item>
+    <item>OIL-DOWN</item>
     <item>CURRY</item>
-    <item>CRAB AND DUMPLIN</item>
     <item>ROTI</item>
-    <item>CORN SOUP</item>
-    <item>BAKE AND SHARK</item>
     <item>DOUBLES</item>
     <item>SOUSE</item>
-    <item>CURRY DUCK</item>
   </string-array>
 
   <string-array name="music">
@@ -25,7 +21,6 @@
     <item>CHUTNEY</item>
     <item>RAPSO</item>
     <item>TASSA</item>
-    <item>STEEL PAN</item>
     <item>GOSPEL</item>
     <item>KAISO</item>
     <item>REGGAE</item>
@@ -35,11 +30,39 @@
   <string-array name="sports">
     <item>CRICKET</item>
     <item>LARA</item>
-    <item>HASLEY CRAWFORD</item>
-    <item>SOCA WARRIORS</item>
-    <item>BOVEL</item>
+    <item>YORKE</item>
   </string-array>
     
+  
+  
+  <string-array name = "foodHard">
+      
+    <item>OIL DOWN</item>
+    <item>CURRY ALOO</item>
+    <item>CRAB AND DUMPLIN</item>
+    <item>CHICKEN AND CHIPS</item>
+    <item>CORN SOUP</item>
+    <item>BAKE AND SHARK</item>
+    <item>TOMATOE CHOKER</item>
+    <item>FISH BROT</item>
+    <item>CURRY DUCK</item>     
+  </string-array>
+   
+    <string-array name = "musicHard">
+      
+    <item>JEAN AND DINAH</item>
+    <item>SUPER BLUE</item>
+    <item>CHAC CHAC</item>     
+    <item>STEEL PAN</item>
+  </string-array>
+  
+    
+    <string-array name = "sportsHard">
+ 	<item>HASLEY CRAWFORD</item>
+    <item>SOCA WARRIORS</item>
+    <item>KESHORN WALCOTT</item>     
+  </string-array>
+   
    
     
 </resources>

@@ -1,16 +1,20 @@
 package com.example.trini_hangman;
 
+import java.util.ArrayList;
 import java.util.Random;
+
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
+
 import java.util.Arrays;
 //import org.apache.commons.lang.StringUtils;
 
@@ -28,6 +32,9 @@ public class GameActivity extends Activity{
 	private LinearLayout layout1,layout2, layout3, layout4;
 	private LinearLayout [] layouts;
 	
+	
+	private ArrayList <Boolean> currAnswer;
+	
 	//body part images
 	private ImageView[] bodyParts;
 	
@@ -35,7 +42,7 @@ public class GameActivity extends Activity{
 	private int numParts=6;
 	
 	//current part - will increment when wrong answers are chosen
-	private int currPart;
+	private int currPart, curlevel=0, curMan=0;
 	
 	//number of characters in current word
 	private int numChars;
@@ -96,99 +103,177 @@ public class GameActivity extends Activity{
 		layout4 = (LinearLayout) this.findViewById(R.id.FinalLayout);	
 	}
 	
-	public void clickLetter(View view) {
-		String letter = this.getLetter(view.getId());
-		Toast.makeText(getApplicationContext(), letter, Toast.LENGTH_SHORT).show();
-		//Analyze the letter and either display or hangman 
-		//read the user input 
-		//if letters are part of the string, display it in textView
+	public void clickLetter(View view) 
+	
+	{ //this is the clickLetter method from the XML Game file 
+		
+		char letter = this.getLetter(view.getId());
+		
+		//Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, letter, Toast.LENGTH_SHORT).show();
+		
+		//inputLetter(letter);
+		//check result;
+		
 		
 	}
+		
+
+	/*private void inputLetter(char c)
+	{
+		boolean isContain = false;
+		for(int i =0; i < secretWord.length();++i){
+			char ans = secretWord.charAt(i);
+			if(c == ans){
+				isContain = true;
+				currAnswer.set(i, true);
+			}
+		}
+		if(curMan > 0 &&isContain){
+			curMan--;
+		}
+		disableLetter(c);
+	}
+	
+	
+	
+	 
+	public void disableLetter(char c){
+		
+		char C= Character.toUpperCase(c);
+		String buttonID = "button" + C;
+		int resID = getResources().getIdentifier(buttonID, "id", "com.example.trini_hangman");
+		Button b = (Button) findViewById(resID);
+		b.setEnabled(false);
+		
+	}
+	*/
+	
+
+	
+	private String getCurrAnser(){
+		String result = new String();
+		for(int i=0;i<currAnswer.size();++i){
+			if(currAnswer.get(i)){
+				result += (secretWord.charAt(i)+" ");
+			}
+			else{
+				result += "_ ";
+			}
+		}
+        Log.d("test",result);
+        
+		return result;
+	}
+	
+
+		
+		//write more code
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//Returns the string for the button selected
-	public String getLetter(int btnId){
-		String letter = null;
+	public char getLetter(int btnId){
+		char letter = ' ';
 		switch(btnId){
 			case R.id.buttonA:
-				letter = "A";
+				letter = 'A';
 				break;
 			case R.id.buttonB:
-				letter = "B";
+				letter = 'B';
 				break;
 			case R.id.buttonC:
-				letter = "C";
+				letter = 'C';
 				break;
 			case R.id.buttonD:
-				letter = "D";
+				letter = 'D';
 				break;
 			case R.id.buttonE:
-				letter = "E";
+				letter = 'E';
 				break;
 			case R.id.buttonF:
-				letter = "F";
+				letter = 'F';
 				break;
 			case R.id.buttonG:
-				letter = "G";
+				letter = 'G';
 				break;
 			case R.id.buttonH:
-				letter = "H";
+				letter = 'H';
 				break;
 			case R.id.buttonI:
-				letter = "I";
+				letter = 'I';
 				break;
 			case R.id.buttonJ:
-				letter = "J";
+				letter = 'J';
 				break;
 			case R.id.buttonK:
-				letter = "K";
+				letter = 'K';
 				break;
 			case R.id.buttonL:
-				letter = "L";
+				letter = 'L';
 				break;
 			case R.id.buttonM:
-				letter = "M";
+				letter = 'M';
 				break;
 			case R.id.buttonN:
-				letter = "N";
+				letter = 'N';
 				break;
 			case R.id.buttonO:
-				letter = "O";
+				letter = 'O';
 				break;
 			case R.id.buttonP:
-				letter = "P";
+				letter = 'P';
 				break;
 			case R.id.buttonQ:
-				letter = "Q";
+				letter = 'Q';
 				break;
 			case R.id.buttonR:
-				letter = "R";
+				letter ='R';
 				break;
 			case R.id.buttonS:
-				letter = "S";
+				letter = 'S';
 				break;
 			case R.id.buttonT:
-				letter = "T";
+				letter = 'T';
 				break;
 			case R.id.buttonU:
-				letter = "U";
+				letter = 'U';
 				break;
 			case R.id.buttonV:
-				letter = "V";
+				letter = 'V';
 				break;
 			case R.id.buttonW:
-				letter = "W";
+				letter = 'W';
 				break;
 			case R.id.buttonX:
-				letter = "X";
+				letter = 'X';
  				break;
 			case R.id.buttonY:
-				letter = "Y";
+				letter = 'Y';
 				break;
 			case R.id.buttonZ:
-				letter = "Z";
+				letter = 'Z';
 				break;
 		}
 		return letter;
+		//check result 
 	}
 
 
@@ -204,43 +289,7 @@ public class GameActivity extends Activity{
 		initWrongGuesses();
 		
 	}
-		
-	private void initSecretWord(String word){
-		
-		//1. splitPhrase (word)
-		//2. 
-		
-		
-		//String underScore = underscore(word);
-		//Log.w(MainActivity.TAG, underScore);
-		
-		
-		String ans;
-		
-		ans = splitPhrase(word);
-		
-		if (secWord == null)
-			secWord = (TextView)findViewById(R.id.secretTextView);
-		
-		secWord.setText(ans);
-	}
-		
-		
-	/*** sets the number of wrong guesses to zero wrongGuesses string to empty   */  
-	private void initWrongGuesses() {   
-		numWrongGuesses = 0;   
-		if (wrongLetters == null)
-			wrongLetters = (TextView)findViewById(R.id.wrongLetters);
-		wrongLetters.setText("");  
-	}  
 	
-	
-	
- /**   * updates the View of wrong guesses with the recent wrong guess   */  
-	private void updateWrongGuesses(char ch) 
-	{   
-		wrongLetters.setText(wrongLetters.getText() + Character.toString(ch));  
-	}
 	
 	
 	 private String underscore(String temp) 
@@ -255,7 +304,50 @@ public class GameActivity extends Activity{
 	}
 	
 	
-	 private String splitPhrase(String rawWord){
+	
+		
+	private void initSecretWord(String word){
+		
+		
+		String underScore = underscore(word);
+		Log.w(MainActivity.TAG, underScore);
+		
+		/*String ans;
+		ans = splitPhrase(word);*/
+		
+		if (secWord == null)
+			secWord = (TextView)findViewById(R.id.secretTextView);
+		
+		secWord.setText(underScore);
+	}
+	
+	
+	
+	
+	
+		
+		
+	/*** sets the number of wrong guesses to zero wrongGuesses string to empty   */  
+	private void initWrongGuesses() {   
+		numWrongGuesses = 0;    
+		if (wrongLetters == null)
+			wrongLetters = (TextView)findViewById(R.id.wrongLetters);
+		wrongLetters.setText("");  
+	}  
+	
+	
+	
+ /**   * updates the View of wrong guesses with the recent wrong guess   */  
+	private void updateWrongGuesses(char ch) 
+	{   
+		wrongLetters.setText(wrongLetters.getText() + Character.toString(ch));  
+	}
+	
+	
+
+	
+	
+/*	 private String splitPhrase(String rawWord){
 		 
 		 String [] split = rawWord.split(" ");
 		 
@@ -285,7 +377,7 @@ public class GameActivity extends Activity{
 		 //build String split[i]+ " "
 		 
 		 return result;
-	 }
+	 }*/
 	 
 	 
 	
@@ -323,12 +415,7 @@ public class GameActivity extends Activity{
 	       startActivity(intentHome);
 	}
 	
-	//for a different level 
-	/*public void nextOne(View view) {   
-	       Intent intent = new Intent(this, GameActivity.class);
-	       //intent.putExtra("level", curlevel);
-	       startActivity(intent);
-	}*/
+
 
 	@Override
 	public void onBackPressed() {

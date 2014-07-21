@@ -15,17 +15,19 @@
    
     <string name="about_text"> 
  
-	Test10 Local Trinidad and Tobago version of Hangman which is a fun way to learn the culture of Trinidad and Tobago. 
+	Test11 Local version of Hangman is a fun way to learn the culture and history of Trinidad and Tobago. 
 	
-	TriniHangman allows you to select from a list of category all related to culture. 
+	TriniHangman allows you to select a category from a list and the secret word to be guessed will appear. 
 	
-	You are presented with all the letters from the alphabet and can guess a letter for the secret word.
+	You are presented with all the letters from the alphabet.
 	 
 	If you guess a letter that is part of the word, the word is redisplayed with all instances of that letter shown in the correct positions, along with any letters correctly guessed on previous turns. 
 	
 	For every letter guessed wrong, a bit more of the hangman is exposed.  
 	
-	You have 8 tries to correctly guess the word.     
+	You have 8 tries to correctly guess the word. Good luck! 
+	
+	Enjoy! 
          
         </string>
         

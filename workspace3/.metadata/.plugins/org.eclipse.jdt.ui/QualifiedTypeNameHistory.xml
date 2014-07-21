@@ -19,4 +19,7 @@
 <fullyQualifiedTypeName name="com.example.trini_hangman.R.id"/>
 <fullyQualifiedTypeName name="com.example.trini_hangman.R.menu"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
+<fullyQualifiedTypeName name="java.lang.Character"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
