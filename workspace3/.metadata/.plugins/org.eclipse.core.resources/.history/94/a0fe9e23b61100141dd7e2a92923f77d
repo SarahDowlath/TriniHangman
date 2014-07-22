@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout android:id="@+id/RelativeLayout01" 
+ android:layout_width="fill_parent" 
+ android:layout_height="fill_parent"  
+ xmlns:android="http://schemas.android.com/apk/res/android">  
+ 
+ <TextView android:layout_height="wrap_content"   
+ android:layout_width="wrap_content" android:text="Congratulations!"   
+ android:id="@+id/endmessage" android:textSize="8pt"   
+ android:layout_centerHorizontal="true">
+ </TextView>  
+ 
+	<TableRow android:layout_height="wrap_content" 
+ 
+	 android:id="@+id/TableRow01"   
+	 android:layout_below="@+id/endmessage" 
+	 android:layout_width="wrap_content"   
+	 android:layout_centerHorizontal="true">  
+
+	</TableRow>
+
+	<Button
+	    android:id="@+id/endgame2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/endmessage"
+	    android:layout_below="@+id/TableRow01"
+	    android:layout_marginTop="35dp"
+	    android:onClick = "winClickButton"
+	    android:text="Back To Main" />
+
+	<Button
+	    android:id="@+id/endgame1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/endgame2"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="42dp"
+	    android:onClick = "winClickButton"
+	    android:text="Exit" />
+ 
+ </RelativeLayout>

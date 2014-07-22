@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,19 +16,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.View.OnClickListener; 
 import android.view.ViewGroup.LayoutParams;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 //import org.apache.commons.lang.StringUtils;
 
 	
 
-public class GameActivity extends Activity {
+public class GameActivity extends Activity implements OnClickListener {
 	//implements onClickListener? 
 	
 	private String wordsFoodArray[],wordsMusicArray[],wordsSportsArray [],categoryArray[];
@@ -46,6 +50,7 @@ public class GameActivity extends Activity {
 	
 	//body part images
 	private ImageView[] bodyParts;
+	private ImageView hangmanimg;
 	
 	//number of body parts
 	private int numParts=6;
@@ -63,7 +68,7 @@ public class GameActivity extends Activity {
 	
 	private int catValue;
 	
-	public static final String KEY_CATEGORY = "com.example.trini_hangman.category";
+	public static final String KEY_CATEGORY = "com.example.trini_hangma n.category";
 	public static final int CATEGORY_FOOD =0;
 	public static final int CATEGORY_MUSIC = 1;
 	public static final int CATEGORY_SPORTS = 2; 
@@ -73,18 +78,22 @@ public class GameActivity extends Activity {
 	
 	static final int DIALOG_LOSE_ID = 2;
 	
+	
 
 	public void onCreate(Bundle savedInstanceState){
+		
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.game);
 		
+	
 		Resources res = getResources();
 		categoryArray = res.getStringArray(R.array.category);
 		wordsFoodArray= res.getStringArray(R.array.food);
 		wordsMusicArray = res.getStringArray(R.array.music);
 		wordsSportsArray = res.getStringArray(R.array.sports);
 		
-		bindViews();
+		
 		
 		rand = new Random();		
 		currWord = "";
@@ -95,6 +104,13 @@ public class GameActivity extends Activity {
 		secretWord = generateWordByCategory(catValue);
 		Toast.makeText(getApplicationContext(), secretWord, Toast.LENGTH_SHORT).show();//shows secret word
 		
+		
+		wordLayout = (LinearLayout)findViewById(R.id.secretWord);
+		
+		
+		bindViews();
+		
+		
 		bodyParts = new ImageView[numParts];
 		bodyParts[0] = (ImageView)findViewById(R.id.head);
 		bodyParts[1] = (ImageView)findViewById(R.id.body);
@@ -103,8 +119,49 @@ public class GameActivity extends Activity {
 		bodyParts[4] = (ImageView)findViewById(R.id.leg1);
 		bodyParts[5] = (ImageView)findViewById(R.id.leg2);
 		
-		initGame(secretWord);
+		//initGame(secretWord);
+		playGame(secretWord);
 	}
+	
+	
+	
+	private void playGame(String word){
+		
+		//initGame(secretWord);
+
+	
+		initGame(word);
+  
+		currWord = word;
+		currPart=0; //initialise
+		numChars=currWord.length();
+		numCorr=0; //initialise 
+	  
+		charViews = new TextView[currWord.length()];
+		wordLayout.removeAllViews(); //what is wordLayout? check xml file? 
+	  
+  
+		 
+		for (int c = 0; c < currWord.length(); c++) {
+		  charViews[c] = new TextView(this);
+		  charViews[c].setText(""+currWord.charAt(c));
+		 
+		  charViews[c].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		  charViews[c].setGravity(Gravity.CENTER);
+		  charViews[c].setTextColor(Color.BLACK);
+		//  charViews[c].setBackgroundResource(R.drawable.letter_bg); //?
+		  //add to layout
+		  wordLayout.addView(charViews[c]);
+		}
+
+		
+}
+	
+	
+	
+	
+	
+	
 		
 	private void bindViews()
 	{
@@ -114,13 +171,14 @@ public class GameActivity extends Activity {
 		
 		secWord= (TextView) this.findViewById(R.id.secretTextView);
 		
+		//hangmanimg= (ImageView)this.findViewById(R.id.hangmanGallows);
 		layout1 = (LinearLayout) this.findViewById(R.id.letterLayout1);
 		layout2 = (LinearLayout) this.findViewById(R.id.letterLayout2);
 		layout3 = (LinearLayout) this.findViewById(R.id.letterLayout3);
 		layout4 = (LinearLayout) this.findViewById(R.id.FinalLayout);	
 	}
 	
-	public void clickLetter(View view) 
+	/*public void clickLetter(View view) 
 	
 	{ //this is the clickLetter method from the XML Game file 
 		
@@ -137,31 +195,91 @@ public class GameActivity extends Activity {
 	
 		
 		//view.setEnabled(false);
-		processLetter(letter);
-		disableLetter(letter);
+		//processLetter(letter);
 		
+		disableLetter(letter);
+		validateGuess(letter);
 		
 		
 		//check result;
 		
 		
-	}
+	}*/
+	
+	
+	public void clickLetter(View view) {
+		  //user has pressed a letter to guess
+		  
+		  String ltr=((TextView)view).getText().toString();
+		  char letterChar = ltr.charAt(0);
+		  view.setEnabled(false);
+		  view.setBackgroundResource(R.drawable.letter_down);
+		  
+		  boolean correct = false;
+		for(int k = 0; k < currWord.length(); k++) {
+		  if(currWord.charAt(k)==letterChar){
+		    correct = true;
+		    numCorr++;
+		    charViews[k].setTextColor(Color.WHITE);
+		  }
+		}
+
+		if (correct){
+		 
+		 if (numCorr == numChars) //user has won 
+		 {
+			//user has won
+			disableBtns();
+				
+			openWinGameDialog();
+			
 		
 
-	private void processLetter(char c)
-	{
-		boolean correct = false;
-		for(int i =0; i < secretWord.length();i++){
-			char ans = secretWord.charAt(i);
-			if(c == ans){
-				correct = true;//Good guess
-				numCorr++;
-				 
-				
-			}
+
 		}
+		else if (correct){
+
+		//correctguess
+
+		}
+
+		else if (currPart<numParts){
+
+			bodyParts[currPart].setVisibility(View.VISIBLE);
+			currPart++;
+		}	
+			
+		else {//they loose
+
+			disableBtns();
+			openLoseGameDialog();
 		
+		} 
+
+
+		}
+
+
+
+
+		}
+
+	
+	
+		
+	private void disableBtns(){
+		
+		for (int i=0;i<26;i++){
+			
+			char c = (char)('a' + i);
+			disableLetter(c);
+			
+			
+		}
 	}
+	
+	
+
 	
 	 
 	public void disableLetter(char c){
@@ -265,6 +383,173 @@ public class GameActivity extends Activity {
 		//check result 
 	}
 
+	
+	
+	
+	
+	/*
+	private void validateGuess(char guess){
+		
+		
+		if(secretWord.indexOf(guess)==-1){
+			
+			String wrongletters_t = wrongLetters.getText().toString();
+			
+				if (wrongletters_t.indexOf(guess) == -1){
+					
+					if(numWrongGuesses < 6){
+						
+						numWrongGuesses++;
+						updateWrongGuesses(guess);
+						updateImg(); //write function 
+					}
+					
+					checkLose();
+					
+				}
+				
+				else{ 
+					
+					if(numWrongGuesses < 6){
+						updateMystWord(guess);
+						checkWin();
+					}
+					
+					else{
+						checkLose();
+					}
+					
+				
+				
+				
+				}
+			}
+		
+	}//end function 
+*/	
+	
+	
+/*	
+	private void checkWin(){
+		
+		if(secWord.getText().toString().indexOf("_ ")== -1){
+			openWinGameDialog();
+		}
+	}
+	
+	
+	
+	private void checkLose(){
+		if(numWrongGuesses == 6){
+			
+			openLoseGameDialog();
+		}
+		
+	}
+	*/
+	
+	
+	private void openWinGameDialog(){
+		 AlertDialog.Builder winGameBuilder=new AlertDialog.Builder(GameActivity.this);
+		 winGameBuilder.setTitle("Congratulations! ");
+		 winGameBuilder.setMessage("You won! Your word was: " + secretWord);
+		 
+		 winGameBuilder.setPositiveButton("Play Again", new DialogInterface.OnClickListener(){
+			 	
+			 public void onClick(DialogInterface wDialog, int which){
+				// GameActivity.this.startGame();
+				 
+			 }
+		 });
+		 
+		 
+		 winGameBuilder.setNegativeButton("Exit", new DialogInterface.OnClickListener(){
+			 
+			 public void onClick(DialogInterface wDialog, int which){
+				 Intent k = new Intent(GameActivity.this, MainActivity.class);    
+				 startActivity(k);   
+				 
+			 }
+		 });
+		 
+		 AlertDialog dialogWin = winGameBuilder.create();
+		 dialogWin.show();
+		 
+		 
+		
+	 }//end openNewGameDialog 
+	
+	
+	
+	
+	
+	private void openLoseGameDialog(){
+		 AlertDialog.Builder loseGameBuilder=new AlertDialog.Builder(GameActivity.this);
+		 loseGameBuilder.setTitle("Sorry ");
+		 loseGameBuilder.setMessage("You lose! The correct word was: " + secretWord);
+		 
+		 loseGameBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+			 	
+			 public void onClick(DialogInterface lDialog, int which){
+				 GameActivity.this.finish();
+				 
+			 }
+		 });
+		 
+		 
+		 loseGameBuilder.setNegativeButton("Exit", new DialogInterface.OnClickListener(){
+			 
+			 public void onClick(DialogInterface lDialog, int which){
+				 Intent k = new Intent(GameActivity.this, MainActivity.class);    
+				 startActivity(k);   
+				 
+			 }
+		 });
+		 
+		 AlertDialog dialogLose = loseGameBuilder.create();
+		 dialogLose.show();
+	}
+	
+	
+	
+	
+	private void updateImg(){
+		
+		switch (numWrongGuesses){
+		
+		case 0: 
+			hangmanimg.setImageResource(R.drawable.android_hangman_gallows);
+			break;
+			
+		case 1: 
+			hangmanimg.setImageResource(R.drawable.android_hangman_head);
+			break;
+		
+		case 2:
+			hangmanimg.setImageResource(R.drawable.android_hangman_body);
+			break;
+		
+		case 3:
+			hangmanimg.setImageResource(R.drawable.android_hangman_arm1);
+			break;
+			
+		case 4:
+			hangmanimg.setImageResource(R.drawable.android_hangman_arm2);
+			break;
+			
+		case 5:
+			hangmanimg.setImageResource(R.drawable.android_hangman_leg1);
+			break;
+		
+		case 6:
+			hangmanimg.setImageResource(R.drawable.android_hangman_leg2);
+			break;
+		
+			default:
+			hangmanimg.setImageResource(R.drawable.android_hangman_gallows);
+		}
+	}
+		
 
 		
 	private void initGame(String word)
@@ -355,50 +640,31 @@ public class GameActivity extends Activity {
 	 
 	 
 	 
-	/* 
-	 protected Dialog onCreateDialog(int id){
-		 
-		 Button keypad1, keypad2, keypad3;
-		 
-		 
-		 TextView endmessage;
-		 Button endgame1;
-		 Button endgame2;
-		 
-		 
-		 switch(id){
-		 
-		 
-		 case DIALOG_WIN_ID:
-			 
-			 currentDialogId = id;
-			 dialog = new Dialog(GameActivity.this);
-			 dialog.setContentView(R.layout.endgame_dialog);
-			 dialog.setTitle("Game Over");
-			 
-			 endmessage = (TextView) dialog.findViewById(R.id.endmessage);
-			 
-			 endgame1 = (Button) dialog.findViewById(R.id.endgame1);
-		 
-			 endgame2 = (Button) dialog.findViewById(R.id.endgame2);
-			 			endmessage.setText("You Win!");
-			 			endgame1.setText("Play Again");
-			 			endgame2.setText("Back to Main");
-		 
-			keypad2.setOnClickListener(this);
-			keypad3.setOnClickListener(this);
-			
-			 			
-		 }
-		 
-	 }
-	 */
+	
 
 	 
 	 
 	 
+	/* 
 	 
-	 
+	 private void updateMystWord(char c){
+		 
+		 char [] updatedWord = secWord.getText().toString().toCharArray();
+		 
+		 for(int i=0;i<secretWord.length();i++)
+		 {
+			 if(c==secretWord.charAt(i)){
+				 updatedWord [i * 2] = secretWord.charAt(i);
+			 }
+			 
+		 }
+		secWord.setText(new String (updatedWord));
+		
+	}
+			 
+*/
+		 
+		 
 	 
 	public void goHome(View view) {   
 	       Intent intentHome = new Intent(this, MainActivity.class);
@@ -413,8 +679,13 @@ public class GameActivity extends Activity {
 		finish();
 		
 	}
-	 
-	 
+
+	@Override
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	 
 	 
 	 
