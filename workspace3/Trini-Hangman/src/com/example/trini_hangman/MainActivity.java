@@ -34,9 +34,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		 
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.continueBtn: //continue old game 
+			/*case R.id.continueBtn: //continue old game 
 				startGame(CATEGORY_CONTINUE);
-				break;   
+				break;*/   
 			case R.id.newgameBtn:  //open a new game dialog box
 				openNewGameDialog();
 				break;
@@ -73,7 +73,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		{
 			//Continue Game
 		
-			//do I pass an intent with the CATEGORY_CONTINUE value to the Game Activity class? 
 			
 		}
 		else
@@ -84,9 +83,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	 }
-
-
-
 
 
 

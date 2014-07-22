@@ -1,39 +1,48 @@
 package com.example.trini_hangman;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
+import android.graphics.Color;
+import android.view.Gravity;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 
-import java.util.Arrays;
 //import org.apache.commons.lang.StringUtils;
 
 	
 
-public class GameActivity extends Activity{
-	
+public class GameActivity extends Activity {
+	//implements onClickListener? 
 	
 	private String wordsFoodArray[],wordsMusicArray[],wordsSportsArray [],categoryArray[];
 	private Random rand;
 	private String currWord,secretWord, wordsFood,wordsMusic,wordsSports, newWord;
-	private TextView [] charViews;
+	private TextView [] charViews;//an array of the text views for the letters
 	
 	private TextView secWord,wrongLetters;
-	private LinearLayout layout1,layout2, layout3, layout4;
+	private LinearLayout wordLayout, layout1,layout2, layout3, layout4;
 	private LinearLayout [] layouts;
 	
+	private Dialog dialog;
+	private int currentDialogId;
 	
-	private ArrayList <Boolean> currAnswer;
+	//private ArrayList <Boolean> currAnswer;
 	
 	//body part images
 	private ImageView[] bodyParts;
@@ -42,7 +51,7 @@ public class GameActivity extends Activity{
 	private int numParts=6;
 	
 	//current part - will increment when wrong answers are chosen
-	private int currPart, curlevel=0, curMan=0;
+	private int currPart;
 	
 	//number of characters in current word
 	private int numChars;
@@ -50,7 +59,7 @@ public class GameActivity extends Activity{
 	//number correctly guessed
 	private int numCorr;
 	
-	private int numWrongGuesses;
+	private int numWrongGuesses;        
 	
 	private int catValue;
 	
@@ -58,6 +67,11 @@ public class GameActivity extends Activity{
 	public static final int CATEGORY_FOOD =0;
 	public static final int CATEGORY_MUSIC = 1;
 	public static final int CATEGORY_SPORTS = 2; 
+	
+	
+	static final int DIALOG_WIN_ID = 1;
+	
+	static final int DIALOG_LOSE_ID = 2;
 	
 
 	public void onCreate(Bundle savedInstanceState){
@@ -95,6 +109,9 @@ public class GameActivity extends Activity{
 	private void bindViews()
 	{
 		wrongLetters = (TextView) this.findViewById(R.id.wrongLetters);
+		
+		wordLayout = (LinearLayout)this.findViewById(R.id.secretWord);
+		
 		secWord= (TextView) this.findViewById(R.id.secretTextView);
 		
 		layout1 = (LinearLayout) this.findViewById(R.id.letterLayout1);
@@ -108,34 +125,43 @@ public class GameActivity extends Activity{
 	{ //this is the clickLetter method from the XML Game file 
 		
 		char letter = this.getLetter(view.getId());
+	
+	
+		//String letter=((TextView)view).getText().toString();
+		
+		//char letterChar = letter.charAt(0);
 		
 		//Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
-		Toast.makeText(this, letter, Toast.LENGTH_SHORT).show();
 		
-		//inputLetter(letter);
+		Toast.makeText(this, "LetterChosen:" +letter, Toast.LENGTH_SHORT).show();
+	
+		
+		//view.setEnabled(false);
+		processLetter(letter);
+		disableLetter(letter);
+		
+		
+		
 		//check result;
 		
 		
 	}
 		
 
-	/*private void inputLetter(char c)
+	private void processLetter(char c)
 	{
-		boolean isContain = false;
-		for(int i =0; i < secretWord.length();++i){
+		boolean correct = false;
+		for(int i =0; i < secretWord.length();i++){
 			char ans = secretWord.charAt(i);
 			if(c == ans){
-				isContain = true;
-				currAnswer.set(i, true);
+				correct = true;//Good guess
+				numCorr++;
+				 
+				
 			}
 		}
-		if(curMan > 0 &&isContain){
-			curMan--;
-		}
-		disableLetter(c);
+		
 	}
-	
-	
 	
 	 
 	public void disableLetter(char c){
@@ -147,48 +173,11 @@ public class GameActivity extends Activity{
 		b.setEnabled(false);
 		
 	}
-	*/
 	
-
-	
-	private String getCurrAnser(){
-		String result = new String();
-		for(int i=0;i<currAnswer.size();++i){
-			if(currAnswer.get(i)){
-				result += (secretWord.charAt(i)+" ");
-			}
-			else{
-				result += "_ ";
-			}
-		}
-        Log.d("test",result);
-        
-		return result;
-	}
 	
 
 		
-		//write more code
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//Returns the string for the button selected
 	public char getLetter(int btnId){
 		char letter = ' ';
@@ -295,8 +284,7 @@ public class GameActivity extends Activity{
 	 private String underscore(String temp) 
 	 {   
 		 //break up the word/phrase 
-		 
-		 
+		
 		 StringBuffer buff = new StringBuffer();   
 		 for (int i = 0; i < temp.length(); i++) 
 			 buff.append("_ "); 
@@ -308,24 +296,18 @@ public class GameActivity extends Activity{
 		
 	private void initSecretWord(String word){
 		
-		
 		String underScore = underscore(word);
 		Log.w(MainActivity.TAG, underScore);
-		
-		/*String ans;
-		ans = splitPhrase(word);*/
-		
+	
 		if (secWord == null)
 			secWord = (TextView)findViewById(R.id.secretTextView);
 		
 		secWord.setText(underScore);
-	}
-	
-	
-	
-	
-	
 		
+		
+			
+}
+	
 		
 	/*** sets the number of wrong guesses to zero wrongGuesses string to empty   */  
 	private void initWrongGuesses() {   
@@ -335,51 +317,13 @@ public class GameActivity extends Activity{
 		wrongLetters.setText("");  
 	}  
 	
-	
-	
+
  /**   * updates the View of wrong guesses with the recent wrong guess   */  
 	private void updateWrongGuesses(char ch) 
 	{   
 		wrongLetters.setText(wrongLetters.getText() + Character.toString(ch));  
 	}
 	
-	
-
-	
-	
-/*	 private String splitPhrase(String rawWord){
-		 
-		 String [] split = rawWord.split(" ");
-		 
-		 
-		 String [] tempWord = new String [20];
-		 
-		 String result=" ";
-		 int count = split.length;
-		 
-		 for(int i=0;i<split.length;i++){
-			 
-			
-				
-			tempWord[i] = underscore(split[i]); 
-		
-			
-			
-		 }
-		 	for( int j=0;j<=count-1;j++){
-		 		
-		 		result= tempWord[j] + 
-		 				" ";
-		 	}
-		 	
-		 
-		 //how to add spaces? after every i: split[i] + " "
-		 //build String split[i]+ " "
-		 
-		 return result;
-	 }*/
-	 
-	 
 	
 	 private String generateWordByCategory(int cat){
 		 String temp = "";
@@ -407,6 +351,52 @@ public class GameActivity extends Activity{
 		 }
 		 return newWord;
 	 }
+	 
+	 
+	 
+	 
+	/* 
+	 protected Dialog onCreateDialog(int id){
+		 
+		 Button keypad1, keypad2, keypad3;
+		 
+		 
+		 TextView endmessage;
+		 Button endgame1;
+		 Button endgame2;
+		 
+		 
+		 switch(id){
+		 
+		 
+		 case DIALOG_WIN_ID:
+			 
+			 currentDialogId = id;
+			 dialog = new Dialog(GameActivity.this);
+			 dialog.setContentView(R.layout.endgame_dialog);
+			 dialog.setTitle("Game Over");
+			 
+			 endmessage = (TextView) dialog.findViewById(R.id.endmessage);
+			 
+			 endgame1 = (Button) dialog.findViewById(R.id.endgame1);
+		 
+			 endgame2 = (Button) dialog.findViewById(R.id.endgame2);
+			 			endmessage.setText("You Win!");
+			 			endgame1.setText("Play Again");
+			 			endgame2.setText("Back to Main");
+		 
+			keypad2.setOnClickListener(this);
+			keypad3.setOnClickListener(this);
+			
+			 			
+		 }
+		 
+	 }
+	 */
+
+	 
+	 
+	 
 	 
 	 
 	 
