@@ -2,15 +2,15 @@
 	android:shape="line" >
 
 	<stroke
-		android:width="2dp"
-		android:color="#FF333333" />
+		android:width="5dp"
+		android:color="#FF0000" />
 
 	<solid android:color="#00000000" />
 
 	<padding android:bottom="20dp" />
 
 	<size
-		android:height="20dp"
+		android:height="10dp"
 		android:width="20dp" />
 
 </shape>
