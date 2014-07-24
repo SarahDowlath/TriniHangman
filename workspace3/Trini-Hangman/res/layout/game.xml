@@ -446,14 +446,17 @@
 
         <Button
             android:id="@+id/buttonHome"
-            android:layout_width="120dp"
+            android:layout_width="98dp"
             android:layout_height="32dp"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="3dp"
             android:background="@drawable/buttonnextonestyle"
             android:onClick="goHome"
+            android:layout_centerHorizontal="true"
+        	android:layout_centerInParent="true"
             android:text="@string/button_go_home"
-            android:textColor="@drawable/nextonecolor" />
+            android:textColor="@drawable/nextonecolor" 
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="0dp"
@@ -461,16 +464,19 @@
             android:layout_weight="1.5" />
 
         <Button
-            android:id="@+id/buttonNext"
+            android:id="@+id/buttonNewGame"
             android:layout_width="120dp"
             android:layout_height="32dp"
-            android:layout_gravity="bottom"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="3dp"
             android:layout_weight="2"
             android:background="@drawable/buttonnextonestyle"
-            android:onClick="nextOne"
-            android:text="@string/button_next"
-            android:textColor="@drawable/nextonecolor" />
+            android:onClick="newGame"
+            android:text="@string/button_new_game"
+            android:textColor="@drawable/nextonecolor"
+            android:textSize="15sp" />
 
     </LinearLayout>
 

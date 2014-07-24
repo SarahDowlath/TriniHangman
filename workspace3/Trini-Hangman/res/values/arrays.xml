@@ -8,7 +8,16 @@
     
     <string-array name="food">
     <item>PELAU</item>
-    <item>OILDOWN</item>
+    <item>HAM</item>
+    <item>SORREL</item>
+    <item>FUDGE</item>
+    <item>CHOW</item>
+    <item>CALALOO</item>
+    <item>CAKE</item>
+    <item>SWEETBREAD</item>
+    <item>CHUTNEY</item>
+    <item>COCONUT</item>
+    <item>SUGARCANE</item>
     <item>CURRY</item>
     <item>ROTI</item>
     <item>DOUBLES</item>
@@ -18,12 +27,17 @@
   <string-array name="music">
     <item>SOCA</item>
     <item>CALYPSO</item>
+    <item>RAP</item>
+    <item>CLASSICAL</item>
     <item>CHUTNEY</item>
     <item>RAPSO</item>
     <item>TASSA</item>
     <item>GOSPEL</item>
     <item>KAISO</item>
     <item>REGGAE</item>
+    <item>PAN</item>
+    <item>DRUMS</item>
+    <item>PARANG</item>
   </string-array>
   
   
@@ -31,6 +45,13 @@
     <item>CRICKET</item>
     <item>LARA</item>
     <item>YORKE</item>
+    <item>BOLDON</item>
+    <item>BOVEL</item>
+    <item>FOOTBALL</item>
+    <item>SWIMMING</item>
+    <item>CYCLING</item>
+    <item>BOXING</item>
+   
   </string-array>
     
   
@@ -45,7 +66,8 @@
     <item>BAKE AND SHARK</item>
     <item>TOMATOE CHOKER</item>
     <item>FISH BROT</item>
-    <item>CURRY DUCK</item>     
+    <item>CURRY DUCK</item>  
+    <item>OIL DOWN</item>   
   </string-array>
    
     <string-array name = "musicHard">
@@ -60,7 +82,8 @@
     <string-array name = "sportsHard">
  	<item>HASLEY CRAWFORD</item>
     <item>SOCA WARRIORS</item>
-    <item>KESHORN WALCOTT</item>     
+    <item>KESHORN WALCOTT</item>
+     <item>GOAT RACE</item>     
   </string-array>
    
    

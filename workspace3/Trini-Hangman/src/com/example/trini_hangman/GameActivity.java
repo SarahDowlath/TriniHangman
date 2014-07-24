@@ -22,6 +22,7 @@ import android.graphics.Color;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener; 
 import android.view.ViewGroup.LayoutParams;
 import android.app.AlertDialog;
@@ -35,7 +36,7 @@ public class GameActivity extends Activity implements OnClickListener {
 	
 	public static final String GAME_CATEGORY = "Hangman_Category";
 	
-	private String wordsFoodArray[],wordsMusicArray[],wordsSportsArray [],categoryArray[];
+	private String wordsFoodArray[],wordsMusicArray[],wordsSportsArray [],categoryArray[], wordsUsedArray[];
 	private Random rand;
 	private String currWord,secretWord,secretWord2, wordsFood,wordsMusic,wordsSports, newWord;
 	private TextView [] charViews;//an array of the text views for the letters
@@ -85,6 +86,7 @@ public class GameActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.game);
+	
 		
 	
 		Resources res = getResources();
@@ -133,7 +135,7 @@ public class GameActivity extends Activity implements OnClickListener {
 	private void playGame(int category){
 		
 		//initGame(secretWord);
-
+		int i=0;
 		secretWord = generateWordByCategory(category);
 		Toast.makeText(getApplicationContext(), secretWord, Toast.LENGTH_SHORT).show();//shows secret word
 		
@@ -148,6 +150,9 @@ public class GameActivity extends Activity implements OnClickListener {
 		wordLayout.removeAllViews(); //what is wordLayout? check xml file? 
 	  
   
+		// wordsUsedArray [i++] = secretWord;
+		 
+		
 		 
 		for (int c = 0; c < currWord.length(); c++) {
 		  charViews[c] = new TextView(this);
@@ -164,7 +169,6 @@ public class GameActivity extends Activity implements OnClickListener {
 
 		
 }
-	
 	
 		
 	private void bindViews()
@@ -191,7 +195,7 @@ public class GameActivity extends Activity implements OnClickListener {
 		  char letterChar = ltr.charAt(0);
 		 // Toast.makeText(getApplicationContext(), "letter:" +letterChar, Toast.LENGTH_SHORT).show();
 		  view.setEnabled(false);
-		  view.setBackgroundResource(R.drawable.letter_down);
+		 // view.setBackgroundResource(R.drawable.letter_down);
 		  
 		  boolean correct = false;
 		  for(int k = 0; k < currWord.length(); k++) 
@@ -387,47 +391,6 @@ public class GameActivity extends Activity implements OnClickListener {
 	}
 
 
-	
-	/*
-	private void validateGuess(char guess){
-		
-		
-		if(secretWord.indexOf(guess)==-1){
-			
-			String wrongletters_t = wrongLetters.getText().toString();
-			
-				if (wrongletters_t.indexOf(guess) == -1){
-					
-					if(numWrongGuesses < 6){
-						
-						numWrongGuesses++;
-						updateWrongGuesses(guess);
-						updateImg(); //write function 
-					}
-					
-					checkLose();
-					
-				}
-				
-				else{ 
-					
-					if(numWrongGuesses < 6){
-						updateMystWord(guess);
-						checkWin();
-					}
-					
-					else{
-						checkLose();
-					}
-					
-				
-				
-				
-				}
-			}
-		
-	}//end function 
-*/	
 
 	
 	private void openWinGameDialog()
@@ -436,15 +399,17 @@ public class GameActivity extends Activity implements OnClickListener {
 		 winGameBuilder.setTitle("Congratulations! ");
 		 winGameBuilder.setMessage("You won! Your word was: " + secretWord);
 		 
-		 winGameBuilder.setPositiveButton("Play Again", new DialogInterface.OnClickListener(){
+ 
+		 winGameBuilder.setPositiveButton("Next Word", new DialogInterface.OnClickListener(){ 
 			 	
 			 public void onClick(DialogInterface wDialog, int which){
-				// openPlayGameAgainDialog();
+				
+				 // openPlayGameAgainDialog();
+				 
 				 enableBtns();
 				 //setContentView(R.layout.game);
-				 
 				 GameActivity.this.playGame(catValue);
-				 
+			 
 			 }
 		 }
 		 );
@@ -490,13 +455,28 @@ public class GameActivity extends Activity implements OnClickListener {
 			 }
 		 });
 		 
+		 
+		 /*
+		 loseGameBuilder.setNegativeButton("New Game", new DialogInterface.OnClickListener(){
+					 
+					 public void onClick(DialogInterface lDialog, int which){
+						 Intent k = new Intent(GameActivity.this, MainActivity.class);   
+						 startActivity(k);   
+						 
+					 }
+				 });*/
+		 
+		 
+		 
+		 
+		 
 		 AlertDialog dialogLose = loseGameBuilder.create();
 		 dialogLose.show();
 	}
 	
 	
-	
-	/*private void openPlayGameAgainDialog(){
+
+	public void openNewGameDialog(){
 		 AlertDialog.Builder dBuilder=new AlertDialog.Builder(this);
 		 dBuilder.setTitle("Select a category");
 		 dBuilder.setItems(R.array.category,new DialogInterface.OnClickListener(){
@@ -508,72 +488,21 @@ public class GameActivity extends Activity implements OnClickListener {
 		AlertDialog alert = dBuilder.create(); //display Dialog box
 		alert.show();
 	 }//end openNewGameDialog 
-*/
 
-/*	private void playAgain(int i){
+
+	private void startGame(int i){
 		
 		
-		secretWord = generateWordByCategory(catValue);
-		Toast.makeText(getApplicationContext(), secretWord, Toast.LENGTH_SHORT).show();//shows secret word
-		
-		initGame(secretWord);
-		
-		playGame(secretWord);
-		
-		
-			Intent intent = new Intent(this, GameActivity.class);
+			Intent intent = new Intent(GameActivity.this, GameActivity.class);
 			intent.putExtra(GAME_CATEGORY, i);
 			startActivity(intent);
-		}*/
+			finish();
+		
+
+	 }
 
 
 	
-	
-	
-	
-	
-	
-	
-	/*
-	
-	private void updateImg(){
-		
-		switch (numWrongGuesses){
-		
-		case 0: 
-			hangmanimg.setImageResource(R.drawable.android_hangman_gallows);
-			break;
-			
-		case 1: 
-			hangmanimg.setImageResource(R.drawable.android_hangman_head);
-			break;
-		
-		case 2:
-			hangmanimg.setImageResource(R.drawable.android_hangman_body);
-			break;
-		
-		case 3:
-			hangmanimg.setImageResource(R.drawable.android_hangman_arm1);
-			break;
-			
-		case 4:
-			hangmanimg.setImageResource(R.drawable.android_hangman_arm2);
-			break;
-			
-		case 5:
-			hangmanimg.setImageResource(R.drawable.android_hangman_leg1);
-			break;
-		
-		case 6:
-			hangmanimg.setImageResource(R.drawable.android_hangman_leg2);
-			break;
-		
-			default:
-			hangmanimg.setImageResource(R.drawable.android_hangman_gallows);
-		}
-	}*/
-		
-
 		
 	private void initGame(String word)
 	{
@@ -584,48 +513,7 @@ public class GameActivity extends Activity implements OnClickListener {
 	}
 	
 
-/*	 private String underscore(String temp) 
-	 {   
-		 //break up the word/phrase 
-		
-		 StringBuffer buff = new StringBuffer();   
-		 for (int i = 0; i < temp.length(); i++) 
-			 buff.append("_ "); 
-		 return buff.toString(); 
-	}
-	
-	
-	
-		
-	private void initSecretWord(String word){
-		
-		String underScore = underscore(word);
-		Log.w(MainActivity.TAG, underScore);
-	
-		if (secWord == null)
-			secWord = (TextView)findViewById(R.id.secretTextView);
-		
-		secWord.setText(underScore);
-		
-		
-			
-}
-	*/
-		
-	/*** sets the number of wrong guesses to zero wrongGuesses string to empty   */  
-/*	private void initWrongGuesses() {   
-		numWrongGuesses = 0;    
-		if (wrongLetters == null)
-			wrongLetters = (TextView)findViewById(R.id.wrongLetters);
-		wrongLetters.setText("");  
-	}  */
-	
 
- /**   * updates the View of wrong guesses with the recent wrong guess   */  
-	private void updateWrongGuesses(char ch) 
-	{   
-		wrongLetters.setText(wrongLetters.getText() + Character.toString(ch));  
-	}
 	
 	
 	 private String generateWordByCategory(int cat){
@@ -662,6 +550,15 @@ public class GameActivity extends Activity implements OnClickListener {
 	       startActivity(intentHome);
 	}
 	
+	
+	public void newGame(View view){
+		enableBtns();
+		//openSelectCatDialog();
+		openNewGameDialog();
+		
+		
+		
+	}
 
 
 	@Override
@@ -678,7 +575,25 @@ public class GameActivity extends Activity implements OnClickListener {
 	}
 
 	 
-	 
+	
+	
+/*	private void playAgain(int i){
+		
+		
+		secretWord = generateWordByCategory(catValue);
+		Toast.makeText(getApplicationContext(), secretWord, Toast.LENGTH_SHORT).show();//shows secret word
+		
+		initGame(secretWord);
+		
+		playGame(secretWord);
+		
+		
+			Intent intent = new Intent(this, GameActivity.class);
+			intent.putExtra(GAME_CATEGORY, i);
+			startActivity(intent);
+		}*/
+
+
 	 
 	 
 }//end class 	

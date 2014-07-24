@@ -53,7 +53,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 	
 	//creating a category option
-	private void openNewGameDialog(){
+	public void openNewGameDialog(){
 		 AlertDialog.Builder dBuilder=new AlertDialog.Builder(this);
 		 dBuilder.setTitle("Select a category");
 		 dBuilder.setItems(R.array.category,new DialogInterface.OnClickListener(){
@@ -69,18 +69,11 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private void startGame(int i){
 		
-		if (MainActivity.CATEGORY_CONTINUE == i)
-		{
-			//Continue Game
 		
-			
-		}
-		else
-		{
 			Intent intent = new Intent(this, GameActivity.class);
 			intent.putExtra(GAME_CATEGORY, i);
 			startActivity(intent);
-		}
+		
 
 	 }
 
