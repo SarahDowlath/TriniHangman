@@ -47,6 +47,15 @@
            android:screenOrientation="portrait"
            
            />
+        
+        
+         <activity
+            
+           android:name="com.example.trini_hangman.SettingsActivity"
+           android:parentActivityName = "com.example.trini_hangman.MainActivity"
+           android:screenOrientation="portrait"
+           
+           />
                
     </application>
 

@@ -102,16 +102,7 @@ public class GameActivity extends Activity implements OnClickListener {
 		
 		catValue = getIntent().getExtras().getInt(MainActivity.GAME_CATEGORY);
 		Log.w(MainActivity.TAG, "Received "+ catValue);
-		
-		/*secretWord = generateWordByCategory(catValue);
-		Toast.makeText(getApplicationContext(), secretWord, Toast.LENGTH_SHORT).show();//shows secret word
-		
-		/*currWord = secretWord;
-		currPart=0;  //
-		numChars=currWord.length(); //setting numChars to length of the word 
-		numCorr=0;*/  //number of correct characters 
-		
-		
+				
 		wordLayout = (LinearLayout)findViewById(R.id.secretWord);
 		
 		
@@ -125,19 +116,17 @@ public class GameActivity extends Activity implements OnClickListener {
 		bodyParts[3] = (ImageView)findViewById(R.id.arm2);
 		bodyParts[4] = (ImageView)findViewById(R.id.leg1);
 		bodyParts[5] = (ImageView)findViewById(R.id.leg2);
-		
-		//initGame(secretWord);
+
 		playGame(catValue);
 	}
 	
 	
 	
 	private void playGame(int category){
-		
-		//initGame(secretWord);
+
 		int i=0;
 		secretWord = generateWordByCategory(category);
-		Toast.makeText(getApplicationContext(), secretWord, Toast.LENGTH_SHORT).show();//shows secret word
+		//Toast.makeText(getApplicationContext(), secretWord, Toast.LENGTH_SHORT).show();//shows secret word
 		
 		initGame(currWord);
   
@@ -149,11 +138,7 @@ public class GameActivity extends Activity implements OnClickListener {
 		charViews = new TextView[currWord.length()];
 		wordLayout.removeAllViews(); //what is wordLayout? check xml file? 
 	  
-  
-		// wordsUsedArray [i++] = secretWord;
-		 
-		
-		 
+ 
 		for (int c = 0; c < currWord.length(); c++) {
 		  charViews[c] = new TextView(this);
 		  charViews[c].setText(""+currWord.charAt(c));
@@ -173,7 +158,6 @@ public class GameActivity extends Activity implements OnClickListener {
 		
 	private void bindViews()
 	{
-		//wrongLetters = (TextView) this.findViewById(R.id.wrongLetters);
 		
 		wordLayout = (LinearLayout)this.findViewById(R.id.secretWord);
 		
@@ -274,10 +258,7 @@ public class GameActivity extends Activity implements OnClickListener {
 		b.setEnabled(false);
 		
 	}
-	
-	
-	
-	
+
 	private void enableBtns()
 	{
 		
@@ -287,9 +268,7 @@ public class GameActivity extends Activity implements OnClickListener {
 			enableLetter(c);
 		}
 	}
-	
-	
-	
+
 	public void enableLetter(char c)
 	{
 		
@@ -387,7 +366,6 @@ public class GameActivity extends Activity implements OnClickListener {
 				break;
 		}
 		return letter;
-		//check result 
 	}
 
 
@@ -397,17 +375,15 @@ public class GameActivity extends Activity implements OnClickListener {
 	{
 		 AlertDialog.Builder winGameBuilder=new AlertDialog.Builder(GameActivity.this);
 		 winGameBuilder.setTitle("Congratulations! ");
+		 winGameBuilder.setIcon(R.drawable.smiley_face);
 		 winGameBuilder.setMessage("You won! Your word was: " + secretWord);
 		 
  
 		 winGameBuilder.setPositiveButton("Next Word", new DialogInterface.OnClickListener(){ 
 			 	
 			 public void onClick(DialogInterface wDialog, int which){
-				
-				 // openPlayGameAgainDialog();
-				 
+
 				 enableBtns();
-				 //setContentView(R.layout.game);
 				 GameActivity.this.playGame(catValue);
 			 
 			 }
@@ -429,14 +405,14 @@ public class GameActivity extends Activity implements OnClickListener {
 		 
 		 
 		
-	 }//end openNewGameDialog 
+	 }//end openWinGameDialog 
 	
 	
 	private void openLoseGameDialog(){
 		 AlertDialog.Builder loseGameBuilder=new AlertDialog.Builder(GameActivity.this);
 		 loseGameBuilder.setTitle("Sorry ");
 		 loseGameBuilder.setMessage("You lose! The correct word was: " + secretWord);
-		 
+		 loseGameBuilder.setIcon(R.drawable.sad_face);
 		 loseGameBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
 			 	
 			 public void onClick(DialogInterface lDialog, int which){
@@ -454,21 +430,6 @@ public class GameActivity extends Activity implements OnClickListener {
 				 
 			 }
 		 });
-		 
-		 
-		 /*
-		 loseGameBuilder.setNegativeButton("New Game", new DialogInterface.OnClickListener(){
-					 
-					 public void onClick(DialogInterface lDialog, int which){
-						 Intent k = new Intent(GameActivity.this, MainActivity.class);   
-						 startActivity(k);   
-						 
-					 }
-				 });*/
-		 
-		 
-		 
-		 
 		 
 		 AlertDialog dialogLose = loseGameBuilder.create();
 		 dialogLose.show();
@@ -491,8 +452,6 @@ public class GameActivity extends Activity implements OnClickListener {
 
 
 	private void startGame(int i){
-		
-		
 			Intent intent = new Intent(GameActivity.this, GameActivity.class);
 			intent.putExtra(GAME_CATEGORY, i);
 			startActivity(intent);
@@ -500,9 +459,6 @@ public class GameActivity extends Activity implements OnClickListener {
 		
 
 	 }
-
-
-	
 		
 	private void initGame(String word)
 	{
@@ -511,9 +467,6 @@ public class GameActivity extends Activity implements OnClickListener {
 			bodyParts[p].setVisibility(View.INVISIBLE);
 		
 	}
-	
-
-
 	
 	
 	 private String generateWordByCategory(int cat){
@@ -553,7 +506,6 @@ public class GameActivity extends Activity implements OnClickListener {
 	
 	public void newGame(View view){
 		enableBtns();
-		//openSelectCatDialog();
 		openNewGameDialog();
 		
 		
@@ -576,22 +528,6 @@ public class GameActivity extends Activity implements OnClickListener {
 
 	 
 	
-	
-/*	private void playAgain(int i){
-		
-		
-		secretWord = generateWordByCategory(catValue);
-		Toast.makeText(getApplicationContext(), secretWord, Toast.LENGTH_SHORT).show();//shows secret word
-		
-		initGame(secretWord);
-		
-		playGame(secretWord);
-		
-		
-			Intent intent = new Intent(this, GameActivity.class);
-			intent.putExtra(GAME_CATEGORY, i);
-			startActivity(intent);
-		}*/
 
 
 	 

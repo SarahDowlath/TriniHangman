@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,21 +29,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		 categoryArray = res.getStringArray(R.array.category);
 		 
 		 // set OnClick Listeners for each button in the view  
-		 ((Button) this.findViewById(R.id.continueBtn)).setOnClickListener(this);  	// continue button    
 		 ((Button) this.findViewById(R.id.newgameBtn)).setOnClickListener(this);   	// new game button   
-		 ((Button) this.findViewById(R.id.aboutBtn)).setOnClickListener(this); 	  	// about button    
+		 ((Button) this.findViewById(R.id.imageView1)).setOnClickListener(this); 	  	// about button    
 		 ((Button) this.findViewById(R.id.exitgameBtn)).setOnClickListener(this); 	// exit button    
 	 }  
 		 
 	public void onClick(View v) {
 		switch (v.getId()) {
-			/*case R.id.continueBtn: //continue old game 
-				startGame(CATEGORY_CONTINUE);
-				break;*/   
 			case R.id.newgameBtn:  //open a new game dialog box
 				openNewGameDialog();
 				break;
-			case R.id.aboutBtn:    // start about activity
+			case R.id.imageView1:    // start about activity
 				Intent j = new Intent(MainActivity.this, About.class);    
 				startActivity(j);    
 				break;  
@@ -76,6 +75,34 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 
 	 }
+
+	
+
+	
+
+/*	public boolean onCreateOptionsMenue(Menu menu){
+		
+		super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate((R.menu.menu, menu);
+	}
+
+	
+	
+	
+	
+	public boolean onOptionsItemSelected(MenuItem item){
+		
+		switch(item.getItemId()){
+		
+		case R.id.settings:
+			startActivity(new Intent(this,Settings.class);
+			return true;
+		}
+		
+		return false;
+	}*/
+		
 
 
 
