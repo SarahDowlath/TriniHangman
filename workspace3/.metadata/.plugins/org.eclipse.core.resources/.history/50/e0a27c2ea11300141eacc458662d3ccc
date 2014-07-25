@@ -57,6 +57,6 @@
         android:layout_alignRight="@+id/title"
         android:text="Powered by SarahD"
         android:textColor="#FF0000"
-        android:textSize="8pt" />
+        android:textSize="5pt" />
 
 </RelativeLayout>
