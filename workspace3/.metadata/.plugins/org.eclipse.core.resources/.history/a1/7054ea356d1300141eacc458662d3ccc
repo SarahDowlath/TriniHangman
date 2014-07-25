@@ -1,0 +1,60 @@
+<!--
+ <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.trini_hangman.MainActivity"
+    tools:ignore="MergeRootFrame" />
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background2" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="false"
+        android:layout_marginTop="15dip"
+        android:text="Welcome to Trini-Hangman"
+        android:textColor="#FF0000"
+        android:textSize="10pt" >
+    </TextView>
+
+
+    <Button
+        android:id="@+id/newgameBtn"
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dip"
+        android:text="New Game" >
+    </Button>
+
+    <Button
+        android:id="@+id/aboutBtn"
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newgameBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dip"
+        android:text="About" >
+    </Button>
+
+    <Button
+        android:id="@+id/exitgameBtn"
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/aboutBtn"
+        android:layout_below="@+id/aboutBtn"
+        android:layout_marginTop="10dp"
+        android:text="Exit" />
+
+</RelativeLayout>
