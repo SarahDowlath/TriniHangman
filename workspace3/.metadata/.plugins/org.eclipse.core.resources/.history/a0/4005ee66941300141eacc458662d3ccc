@@ -442,7 +442,7 @@ public class GameActivity extends Activity implements OnClickListener {
 		 dBuilder.setTitle("Select a category");
 		 dBuilder.setItems(R.array.category,new DialogInterface.OnClickListener(){
 			 public void onClick(DialogInterface dialogInt, int item){
-				// Toast.makeText(getApplicationContext(), categoryArray[item], Toast.LENGTH_SHORT).show(); 
+				 Toast.makeText(getApplicationContext(), categoryArray[item], Toast.LENGTH_SHORT).show(); 
 				 startGame(item);
 			 }
 		 });
